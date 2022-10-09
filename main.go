@@ -42,5 +42,14 @@ func main() {
 		}
 
 		fmt.Println(data)
+
+		file, err := os.Create("address.txt")
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "Erro ao fazer requisição: %v \n", err)
+		}
+		defer file.Close()
+
+		_, err = file.WriteString(fmt.Sprintf("CEP: %s, Logradouro: %s, Bairro: %s, Cidade: %s, UF: %s", data.Cep, data.Logradouro, data.Bairro, data.Localidade, data.Uf))
+
 	}
 }
